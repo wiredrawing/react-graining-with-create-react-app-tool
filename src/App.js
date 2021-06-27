@@ -26,7 +26,8 @@ function App() {
     });
 
     // 確認ボタンを押す度に､サーバにpostリクエスト
-    axios.post("http://localhost:8888", shopList).then((data) => {
+    const apiUri ="http://localhost:8888";
+    axios.post(apiUri, shopList).then((data) => {
       console.log(data);
     }).catch((error) => {
       console.log(error);

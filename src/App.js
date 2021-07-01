@@ -9,6 +9,7 @@ import {Page1} from "./components/Page1";
 import {Page2} from "./components/Page2";
 import {Page1DetailA} from "./components/Page1DetailA";
 import {Page1DetailB} from "./components/Page1DetailB";
+import {Router} from "./router/Router";
 function App() {
 
 
@@ -85,32 +86,8 @@ function App() {
         <Link to="/page2">Page2</Link><br/>
 
 
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
+      <Router></Router>
 
-          <Route
-            path="/page1"
-            render={() => (
-                <Switch>
-                  <Route exact path="/page1">
-                    <Page1/>
-                  </Route>
-                  <Route exact path="/page1/detailA">
-                    <Page1DetailA/>
-                  </Route>
-                  <Route exact path="/page1/detailB">
-                    <Page1DetailB/>
-                  </Route>
-                </Switch>
-              )
-            }>
-          </Route>
-          <Route path="/page2">
-            <Page2></Page2>
-          </Route>
-        </Switch>
         {/* <div>
           <p> count => {count}</p>
           <p onClick={countUp}>カウントアップ</p>

@@ -3,6 +3,7 @@ import {Switch , Route } from "react-router-dom"
 import {Home} from "../components/Home"
 import {page1Routes} from "./Page1Routes"
 import { page2Routes } from "./Page2Routes"
+import {Page404} from "../components/Page404"
 export const Router = () => {
   return (
     <Switch>
@@ -47,6 +48,9 @@ export const Router = () => {
         )
       }}
       >
+    </Route>
+    <Route path="*">
+      <Page404></Page404>
     </Route>
   </Switch>
   )

@@ -1,29 +1,30 @@
-import {Page1} from "../components/Page1"
-import {Page1DetailA} from "../components/Page1DetailA"
-import {Page1DetailB} from "../components/Page1DetailB"
-import {Page404} from "../components/Page404"
+import {
+  P1
+} from "../components/P1"
+
+import {
+  Pd1
+} from "../components/Pd1"
+
+import {
+  Pd2
+} from "../components/Pd2"
+
+
 export const page1Routes = [
-
-
-
   {
-    path:"/",
+    path: "/",
     exact: true,
-    children: <Page1></Page1>
+    children: <P1></P1>
   },
   {
-    path:"/detailA",
-    exact: true,
-    children: <Page1DetailA></Page1DetailA>
-  },
-  {
-    path:"/detailB",
+    path: "/detail1",
     exact: false,
-    children: <Page1DetailB></Page1DetailB>
+    children: <Pd1></Pd1>
   },
   {
-    path:"*",
+    path: "/detail2",
     exact: false,
-    children: <Page404/>
+    children: <Pd2></Pd2>
   },
 ]

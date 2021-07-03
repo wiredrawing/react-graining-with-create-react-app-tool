@@ -1,57 +1,45 @@
-import React from "react"
-import {Switch , Route } from "react-router-dom"
-import {Home} from "../components/Home"
+import {
+  Route,
+  Switch
+}  from "react-router-dom"
+
+// 各種ページ要素をimport
+import {H} from "../components/H"
+import {P1} from "../components/P1"
+import {P2} from "../components/P2"
+// P1詳細ページ
+import {Pd1} from "../components/Pd1"
+import {Pd2} from "../components/Pd2"
+
 import {page1Routes} from "./Page1Routes"
-import { page2Routes } from "./Page2Routes"
-import {Page404} from "../components/Page404"
 export const Router = () => {
   return (
     <Switch>
-    <Route exact path="/">
-      <Home/>
-    </Route>
+      <Route exact path="/">
+        <H></H>
+      </Route>
 
-    <Route
-      path="/page1"
-      render={({match : {url}}) => (
+      <Route path="/p1" render={ (props) => {
+        return (
           <Switch>
             {page1Routes.map((route) => {
               return (
                 <Route
                   key={route.path}
                   exact={route.exact}
-                  path={url + route.path}>
+                  path={props.match.url + route.path}>
                   {route.children}
                 </Route>
               )
             })}
           </Switch>
         )
-      }>
-    </Route>
-    <Route
-      path="/page2"
-      render={({match: {url}}) => {
-        return (
-          <Switch>
-            {page2Routes.map((route) => {
-              return (
-                <Route
-                  key={route.path}
-                  exact={route.exact}
-                  path={url + route.path}>
-                  {route.children}
-                </Route>
-              )
-            })}
-          </Switch>
-        )
-      }}
-      >
-    </Route>
-    <Route path="*">
-      <Page404></Page404>
-    </Route>
-  </Switch>
+      }}>
+      </Route>
+
+      <Route path="/p2">
+        <P2></P2>
+      </Route>
+    </Switch>
   )
-}
+};

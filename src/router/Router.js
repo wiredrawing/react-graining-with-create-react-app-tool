@@ -11,6 +11,8 @@ import {P2} from "../components/P2"
 import {Pd1} from "../components/Pd1"
 import {Pd2} from "../components/Pd2"
 
+// 404ページの表示
+import {P404} from "../components/P404";
 import {page1Routes} from "./Page1Routes"
 export const Router = () => {
   return (
@@ -40,6 +42,11 @@ export const Router = () => {
       <Route path="/p2">
         <P2></P2>
       </Route>
+
+      <Route path="*">
+        <P404></P404>
+      </Route>
+
     </Switch>
   )
 };

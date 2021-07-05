@@ -10,6 +10,13 @@ import {
   Pd2
 } from "../components/Pd2"
 
+import {
+  UrlParameter
+} from "../components/UrlParameter"
+
+import {
+  P404
+} from "../components/P404";
 
 export const page1Routes = [
   {
@@ -26,5 +33,17 @@ export const page1Routes = [
     path: "/detail2",
     exact: false,
     children: <Pd2></Pd2>
+  },
+  // 動的なURLパラメータを取得する
+  {
+    path: "/urlParameter/:id",
+    exact: false,
+    children: <UrlParameter></UrlParameter>
+  },
+  // 特定のURL配下で存在しないページを設置
+  {
+    path: "*",
+    exact: false,
+    children: <P404/>
   },
 ]

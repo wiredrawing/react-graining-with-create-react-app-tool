@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import Shop  from "./components/Shop"
 import Modal from "./components/Modal";
 import axios from "axios";
+import {Login} from "./components/Login";
+import {BrowserRouter, Switch, Route} from "react-router-dom"
 function App() {
 
 
@@ -74,26 +76,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <div>
-        <p> count => {count}</p>
-        <p onClick={countUp}>カウントアップ</p>
-        <p onClick={countDown}>カウントダウン</p>
-        <p onClick={resetButton}>リセット</p>
-        <p onClick={doubleUp}>2倍</p>
-        <p>商 => {quotient}</p>
-      </div>
+      <BrowserRouter>
 
-      <Shop delegateShopData={delegateShopData} />
-      <hr/>
-      <p>以下は､Appコンポーネント内処理です｡</p>
-      <div className="row">
-        <div className="col-6">
-          <p className="btn btn-danger" style={checkButtonStyle} onClick={switchModal}>確認画面を表示</p>
-        </div>
-      </div>
-      <div className="row">
-        <Modal isDisplayed={isDisplayed} shopList={shopList}></Modal>
-      </div>
+
+        <Switch>
+          <Route path="/login" component={Login}>
+          </Route>
+        </Switch>
+
+      </BrowserRouter>
     </React.Fragment>
   );
 }

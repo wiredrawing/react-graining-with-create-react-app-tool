@@ -5,6 +5,7 @@ import Modal from "./components/Modal";
 import axios from "axios";
 import {Login} from "./components/Login";
 import {Room} from "./components/Room";
+import {RoomDetail} from "./components/RoomDetail";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 function App() {
 
@@ -80,11 +81,12 @@ function App() {
       <BrowserRouter>
 
 
-        <Switch>
-          <Route path="/login" render={} ></Route>
+      <Switch>
+        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/room" component={Room}></Route>
+        <Route exact path="/room/:id" component={RoomDetail}></Route>
+      </Switch>
 
-          <Route path="/room" component={Room}></Route>
-        </Switch>
 
       </BrowserRouter>
     </React.Fragment>

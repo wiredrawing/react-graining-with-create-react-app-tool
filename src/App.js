@@ -4,6 +4,7 @@ import Shop  from "./components/Shop"
 import Modal from "./components/Modal";
 import axios from "axios";
 import {Login} from "./components/Login";
+import {Room} from "./components/Room";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 function App() {
 
@@ -80,8 +81,9 @@ function App() {
 
 
         <Switch>
-          <Route path="/login" component={Login}>
-          </Route>
+          <Route path="/login" render={} ></Route>
+
+          <Route path="/room" component={Room}></Route>
         </Switch>
 
       </BrowserRouter>

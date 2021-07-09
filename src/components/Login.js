@@ -1,10 +1,11 @@
 import React from "react"
 import axios from "axios"
-
+import {
+  useHistory
+} from "react-router-dom"
 
 export const Login = () => {
-
-
+  const history = useHistory();
 
   const [loginInfo, setLoginInfo] = React.useState({
     login_id: "",
@@ -16,6 +17,8 @@ export const Login = () => {
 
     if (loginInfo.login_id == "admin" && loginInfo.password == "10574318") {
       alert("ログイン完了");
+      // scriptで画面遷移させる
+      history.push ("/room/");
     } else {
       alert("ログインできません");
     }

@@ -64,6 +64,7 @@ export const RoomDetail = () => {
       axios.get("http://localhost:8000/api/room/" + currentRoomId).then((data) => {
         setTalkList(data.data);
         setMessage("");
+        document.getElementById("chat-block").scrollIntoView({ block: "end" });
       });
     });
   };
@@ -77,6 +78,7 @@ export const RoomDetail = () => {
   useEffect(() => {
     axios.get("http://localhost:8000/api/room/" + currentRoomId).then((data) => {
       setTalkList(data.data);
+      document.getElementById("chat-block").scrollIntoView({ block: "end" });
     });
   }, []);
 
@@ -99,20 +101,22 @@ export const RoomDetail = () => {
             <button type="button" onClick={talkNewMessage}>発言</button>
           </div>
         </div>
-        {talkList.map((talk) => {
-          return (
-            <div className="row" key={talk.id}>
-              <div className="col-lg-3 col-xl-3 col-xxl-3">
-                <p>({talk.id}){talk.user}</p>
+        <div className="chat-block" id="chat-block">
+          {talkList.map((talk) => {
+            return (
+              <div className="row" key={talk.id}>
+                <div className="col-lg-3 col-xl-3 col-xxl-3">
+                  <p>({talk.id}){talk.user}</p>
+                </div>
+                <div className="col-lg-9 col-xl-9 col-xxl-9">
+                  <p>{talk.message} from {talk.user_name}</p>
+                </div>
               </div>
-              <div className="col-lg-9 col-xl-9 col-xxl-9">
-                <p>{talk.message} from {talk.user_name}</p>
-              </div>
-            </div>
-          )
-        })}
-        <div className="row">
-          <button type="button" onClick={backRoomListPage} className="form-control btn btn-outline-primary">Room一覧へ戻る</button>
+            )
+          })}
+          <div className="row">
+            <button type="button" onClick={backRoomListPage} className="form-control btn btn-outline-primary">Room一覧へ戻る</button>
+          </div>
         </div>
       </div>
     </React.StrictMode>

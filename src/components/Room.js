@@ -1,4 +1,5 @@
-import React from "react"
+import axios from "axios";
+import React, {useEffect} from "react"
 import { Route, useHistory } from "react-router-dom";
 
 
@@ -8,7 +9,11 @@ export const Room = () => {
 
   const history = useHistory ();
 
-  const [chartRoomList, setChatRoomList] = React.useState([
+
+  const [newRoomName, setNewRoomName] = React.useState("ここに､新しいルーム名を入力して下さい｡");
+
+
+  const [chatRoomList, setChatRoomList] = React.useState([
     {
       room_name: "PHPについて語り合う部屋",
       id: 2342,
@@ -24,6 +29,55 @@ export const Room = () => {
   ]);
 
 
+  const makeNewRoom = (e) => {
+    let newRoomName = e.target.value;
+
+    setNewRoomName((pre) => {
+      let temp = pre;
+      temp = newRoomName;
+      return temp;
+    });
+  }
+
+
+
+  const registerNewRoomName = (e) => {
+
+    // let nextRoomId = 0;
+    // let roomIdList = chatRoomList.map((chat, index) => {
+    //   return chat.id
+    // });
+    // nextRoomId = Math.max.apply(null, roomIdList) + 1;
+    axios.post("http://localhost:8000/api/room/", { room_name: newRoomName}).then((data) => {
+      console.log(data);
+      axios.get("http://localhost:8000/api/room").then((data) => {
+        console.log(data);
+        setChatRoomList(data.data);
+      });
+    })
+
+
+
+    // setChatRoomList ((pre) => {
+    //   let temp = pre.slice();
+    //   let t = new Date();
+    //   temp.push({
+    //     room_name: newRoomName,
+    //     id: nextRoomId,
+    //   });
+    //   return temp;
+    // });
+  }
+
+
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/room").then((data) => {
+      console.log(data);
+      setChatRoomList(data.data);
+    });
+  },[])
+
   // チャットルームにチェックインする
   const checkInRoom = (roomID) => {
 
@@ -34,7 +88,16 @@ export const Room = () => {
 
 
     <React.StrictMode>
-        {chartRoomList.map((room, index) => {
+
+      <div class="row">
+        <div class="col-12">
+          <p>新しいRoomを作成する</p>
+          <input class="form-control" type="text" onInput={makeNewRoom} value={newRoomName}></input>
+          <button type="button" onClick={registerNewRoomName}>このRoomを登録する</button>
+        </div>
+      </div>
+
+        {chatRoomList.map((room, index) => {
           return (
             <div key={room.id} class="row">
               <div class="col-lg-12">
